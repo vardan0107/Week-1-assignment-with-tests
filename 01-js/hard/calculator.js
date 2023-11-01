@@ -17,6 +17,50 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(num) {
+    this.result += num;
+  }
+
+  subtract(num) {
+    this.result -= num;
+  }
+
+  multiply(num) {
+    this.result *= num;
+  }
+
+  divide(num) {
+    if (num === 0) {
+      throw new Error();
+    }
+
+    this.result /= num;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(arthOperation) {
+    this.result = eval(arthOperation.replace(/\s/g, ""));
+
+    if (!isFinite(this.result)) {
+      throw new Error("Invalid expression.");
+    }
+  }
+}
+
+let calc = new Calculator();
+console.log(calc.calculate("10 / 0"));
+// console.log(calc.getResult());
 
 module.exports = Calculator;
